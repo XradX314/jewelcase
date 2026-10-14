@@ -21,7 +21,7 @@
 |---|---|---|
 | Windows 10/11 x64 | `.msi` / `-setup.exe` | Completo |
 | Linux x64 | `.AppImage` / `.deb` / `.rpm` | Experimental |
-| macOS (ARM / Intel) | `.dmg` | Experimental |
+| macOS (Apple Silicon) | `.dmg` | Experimental |
 
 Los instaladores no están firmados: en Windows, SmartScreen → «Más información → Ejecutar de todas formas»; en macOS, clic derecho → Abrir.
 
