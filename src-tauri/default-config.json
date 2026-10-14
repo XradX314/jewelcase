@@ -1,0 +1,8 @@
+{
+  "yaw": -22, "pitch": 14, "roll": 0, "size": 100, "sway": false, "edgeAmt": 70, "quality": 1.5,
+  "rpm": 24, "playing": true, "discStyle": "upload", "paper": false, "paperDark": false,
+  "wearPreset": "light", "count": 40, "wearI": 55, "wearLen": 22, "swirl": 30, "dust": 10, "surface": "both", "seed": 7,
+  "refr": true, "refrAmt": 100, "live": true, "fanartApiKey": "", "discogsToken": "", "fps": 30, "msaa": 4, "pauseFullscreen": true, "spinSecs": 3, "spinReverse": false, "spotifyClientId": "",
+  "level": "top", "x": null, "y": null,
+  "artist": "Charly García", "album": "Clics modernos"
+}

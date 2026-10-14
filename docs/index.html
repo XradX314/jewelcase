@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>JewelCase — un CD girando en tu escritorio</title>
+<meta name="description" content="Widget 3D de código abierto: una jewel case transparente con el CD del álbum que suena en Spotify, girando en tu escritorio.">
+<link rel="icon" href="icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chivo:wght@400;500;700;900&family=Chivo+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f4f2ee; --fg:#15171a; --muted:#5d636b; --line:#d9d5cd; --card:#fff; --accent:#0f766e; --accent-fg:#fff; --code:#ece9e2;
+}
+@media (prefers-color-scheme:dark){
+  :root{--bg:#0e1013; --fg:#eceae5; --muted:#9aa0a8; --line:#262a30; --card:#16191d; --accent:#5eead4; --accent-fg:#06201d; --code:#1b1f24}
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.65 'Chivo',system-ui,sans-serif}
+a{color:var(--accent)}
+.wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+nav{display:flex;align-items:center;justify-content:space-between;padding:18px 0;gap:12px;flex-wrap:wrap}
+nav .brand{display:flex;align-items:center;gap:10px;font-weight:700;color:var(--fg);text-decoration:none}
+nav .brand img{width:30px;height:30px;border-radius:7px}
+nav ul{display:flex;gap:20px;list-style:none;margin:0;padding:0;flex-wrap:wrap}
+nav ul a{color:var(--muted);text-decoration:none;font-size:14px}
+nav ul a:hover{color:var(--fg)}
+.hero{display:grid;grid-template-columns:1.05fr 1fr;gap:36px;align-items:center;padding:36px 0 56px}
+.hero h1{font-size:clamp(36px,6vw,64px);line-height:1.02;margin:0 0 18px;font-weight:900;letter-spacing:-.02em}
+.hero p{color:var(--muted);font-size:18px;margin:0 0 26px;max-width:46ch}
+.btns{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-block;padding:12px 20px;border-radius:10px;font-weight:700;text-decoration:none;border:1px solid var(--line);color:var(--fg);background:var(--card)}
+.btn.primary{background:var(--accent);color:var(--accent-fg);border-color:var(--accent)}
+.demo{position:relative;aspect-ratio:1/1;border:1px solid var(--line);border-radius:18px;overflow:hidden;background:#202428}
+.demo iframe{width:100%;height:100%;border:0;display:block}
+.demo small{position:absolute;left:12px;bottom:10px;color:#cfd3d8;font-size:12px;background:#0008;padding:3px 8px;border-radius:6px;pointer-events:none}
+section{padding:44px 0;border-top:1px solid var(--line)}
+h2{font-size:clamp(26px,4vw,36px);margin:0 0 8px;letter-spacing:-.01em}
+.lead{color:var(--muted);margin:0 0 28px;max-width:62ch}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px}
+.card h3{margin:0 0 6px;font-size:17px}
+.card p{margin:0;color:var(--muted);font-size:15px}
+table{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;font-size:15px}
+th,td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:13px;color:var(--muted);font-weight:500}
+tr:last-child td{border-bottom:0}
+.scroll{overflow-x:auto}
+pre,code{font-family:'Chivo Mono',ui-monospace,monospace}
+pre{background:var(--code);border-radius:10px;padding:14px 16px;overflow-x:auto;font-size:13.5px;margin:12px 0}
+code{background:var(--code);padding:1px 6px;border-radius:5px;font-size:.9em}
+pre code{background:none;padding:0}
+ol.steps{padding-left:22px}
+ol.steps li{margin-bottom:14px}
+.tag{display:inline-block;font-size:12px;padding:2px 9px;border-radius:99px;border:1px solid var(--line);color:var(--muted)}
+.tag.ok{color:var(--accent);border-color:var(--accent)}
+footer{padding:36px 0 60px;color:var(--muted);font-size:14px;border-top:1px solid var(--line)}
+@media (max-width:820px){.hero{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav>
+    <a class="brand" href="#"><img src="icon.png" alt="">JewelCase</a>
+    <ul>
+      <li><a href="#que-es">Qué es</a></li>
+      <li><a href="#instalar">Instalar</a></li>
+      <li><a href="#uso">Uso</a></li>
+      <li><a href="#spotify">Spotify</a></li>
+      <li><a href="#compilar">Compilar</a></li>
+      <li><a href="https://github.com/XradX314/jewelcase">GitHub</a></li>
+    </ul>
+  </nav>
+
+  <header class="hero">
+    <div>
+      <h1>Un CD girando en tu escritorio.</h1>
+      <p>JewelCase es un widget 3D de código abierto: una caja de CD transparente con el disco del álbum que está sonando en Spotify, con refracción real de tu fondo de pantalla.</p>
+      <div class="btns">
+        <a class="btn primary" href="https://github.com/XradX314/jewelcase/releases/latest">Descargar</a>
+        <a class="btn" href="https://github.com/XradX314/jewelcase">Ver código</a>
+      </div>
+    </div>
+    <div class="demo">
+      <iframe src="demo.html" title="Demo interactiva de JewelCase" loading="lazy"></iframe>
+      <small>Demo en vivo: arrastrá para girar, clic para abrir la tapa</small>
+    </div>
+  </header>
+
+  <section id="que-es">
+    <h2>Qué es</h2>
+    <p class="lead">Un objeto físico simulado con medidas reales (caja de 142 × 125 × 10,4 mm, CD de Ø 120 mm) que vive sobre tu escritorio y cambia de álbum cuando cambia tu música.</p>
+    <div class="grid">
+      <div class="card"><h3>Plástico transparente real</h3><p>Shader propio con absorción de Beer-Lambert, reflexión interna total y Fresnel. Rayones procedurales que solo brillan cuando agarran la luz.</p></div>
+      <div class="card"><h3>El CD del álbum</h3><p>Busca la foto real del disco en MusicBrainz / Cover Art Archive, Discogs, TheAudioDB y Fanart.tv. Si no hay, genera una serigrafía con la paleta de la portada.</p></div>
+      <div class="card"><h3>Difracción física</h3><p>El disco refleja arcoíris con una pista de 1,6 µm (órdenes 1 a 3) y marcas que giran con él.</p></div>
+      <div class="card"><h3>Refracción del escritorio</h3><p>La caja deforma lo que hay detrás, en vivo. La ventana es transparente y deja pasar los clics fuera del objeto.</p></div>
+      <div class="card"><h3>Librito interactivo</h3><p>Abrí la tapa, mirá la lista de canciones y tocá un renglón para reproducirla (Spotify Premium).</p></div>
+      <div class="card"><h3>Liviano</h3><p>Dibuja solo cuando algo cambia, baja la frecuencia en reposo y se pausa con apps a pantalla completa.</p></div>
+    </div>
+  </section>
+
+  <section id="instalar">
+    <h2>Instalar</h2>
+    <p class="lead">Bajá el archivo de tu sistema desde la <a href="https://github.com/XradX314/jewelcase/releases/latest">última release</a>. No hace falta cuenta ni instalar nada más.</p>
+    <div class="scroll">
+    <table>
+      <tr><th>Sistema</th><th>Archivo</th><th>Estado</th></tr>
+      <tr><td>Windows 10/11 (x64)</td><td><code>.msi</code> o <code>-setup.exe</code></td><td><span class="tag ok">Completo</span> Todas las funciones. Requiere WebView2 (ya viene con Windows 11).</td></tr>
+      <tr><td>Linux (x64)</td><td><code>.AppImage</code>, <code>.deb</code>, <code>.rpm</code></td><td><span class="tag">Experimental</span> Sin refracción en vivo del escritorio ni detección instantánea de Spotify.</td></tr>
+      <tr><td>macOS (Apple Silicon / Intel)</td><td><code>.dmg</code></td><td><span class="tag">Experimental</span> Igual que Linux. Sin firmar: clic derecho → Abrir la primera vez.</td></tr>
+    </table>
+    </div>
+    <p class="lead" style="margin-top:14px">Windows puede mostrar SmartScreen porque el instalador no está firmado: «Más información → Ejecutar de todas formas».</p>
+  </section>
+
+  <section id="uso">
+    <h2>Cómo se usa</h2>
+    <ol class="steps">
+      <li><b>Abrí JewelCase.</b> Aparece el widget en el escritorio y un ícono en la bandeja del sistema.</li>
+      <li><b>Arrastrá</b> para girar la caja. <b>Clic</b> sin mover para abrir o cerrar la tapa.</li>
+      <li><b>Alt + arrastrar</b> mueve la ventana. También podés usar «Reposicionar» en la bandeja (doble clic para salir de ese modo).</li>
+      <li><b>Ajustes</b> (clic en el ícono de la bandeja): tamaño, nivel de ventana (siempre encima / al fondo), calidad, refracción, desgaste de la caja y el CD, papel, fondo.</li>
+      <li><b>Recargar arte</b> desde la bandeja si un álbum trajo mal el disco. Por álbum podés fijar una foto manual con una URL.</li>
+    </ol>
+    <div class="grid">
+      <div class="card"><h3>Mouse</h3><p>Arrastrar: rotar · Clic: tapa · Alt+arrastrar: mover · Clic en renglón: reproducir canción.</p></div>
+      <div class="card"><h3>Bandeja</h3><p>Ajustes, Reposicionar, Recargar arte, Salir.</p></div>
+      <div class="card"><h3>Claves opcionales</h3><p>Fanart.tv y Discogs mejoran la búsqueda de discos. Sin ellas funciona igual con MusicBrainz y TheAudioDB.</p></div>
+    </div>
+  </section>
+
+  <section id="spotify">
+    <h2>Conectar Spotify</h2>
+    <p class="lead">Usa tu propio Client ID (autenticación PKCE, sin secretos). Hacerlo lleva dos minutos. Reproducir al tocar un renglón requiere Premium.</p>
+    <ol class="steps">
+      <li>Entrá a <a href="https://developer.spotify.com/dashboard">developer.spotify.com/dashboard</a> y creá una app.</li>
+      <li>En <i>Redirect URIs</i> agregá exactamente: <pre><code>http://127.0.0.1:47862/callback</code></pre></li>
+      <li>Copiá el <b>Client ID</b> y pegalo en Ajustes → Spotify, luego «Conectar».</li>
+    </ol>
+    <p class="lead">El token de sesión se guarda en el almacén seguro del sistema (Administrador de Credenciales en Windows). En Windows, JewelCase también detecta el cambio de canción al instante sin iniciar sesión.</p>
+  </section>
+
+  <section id="compilar">
+    <h2>Compilar desde el código</h2>
+    <p class="lead">Necesitás Node LTS y Rust (toolchain estable). En Windows, Visual Studio Build Tools con «Desktop development with C++». En Linux: <code>libwebkit2gtk-4.1-dev libayatana-appindicator3-dev librsvg2-dev libssl-dev libdbus-1-dev</code>.</p>
+<pre><code>git clone https://github.com/XradX314/jewelcase.git
+cd jewelcase
+npm install
+npm run tauri dev      # desarrollo
+npm run tauri build    # genera los instaladores</code></pre>
+    <p class="lead"><code>src/render/jewelcase.ts</code> es generado: para tocar el render editá <code>tools/render/*.part.ts</code> o <code>build.mjs</code> y corré <code>npm run render</code>. La referencia visual es <a href="demo.html">demo.html</a>.</p>
+    <p class="lead">Stack: Tauri 2 (Rust) · Vite · TypeScript · Three.js 0.158.</p>
+  </section>
+
+  <footer>
+    JewelCase es software libre bajo licencia MIT. Las portadas y discos pertenecen a sus respectivos dueños y se consultan en servicios públicos (MusicBrainz, Cover Art Archive, Discogs, TheAudioDB, Fanart.tv). No está afiliado a Spotify.<br>
+    <a href="https://github.com/XradX314/jewelcase">Código</a> · <a href="https://github.com/XradX314/jewelcase/issues">Reportar un problema</a> · <a href="https://github.com/XradX314/jewelcase/releases">Releases</a>
+  </footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>JewelCase · Ajustes</title>
+<style>
+:root{
+  --bg:#0b0c0f; --line:rgba(232,238,248,.10); --fg:#e8ebf1; --muted:#9198a5; --accent:#a9dceb; --accent-ink:#0a1a20; --chip:rgba(255,255,255,.06);
+  --f-ui:"Chivo","Segoe UI",system-ui,sans-serif; --f-mono:"Chivo Mono",ui-monospace,Consolas,monospace; color-scheme:dark;
+}
+html,body{height:100%;margin:0}
+body{background:var(--bg);color:var(--fg);font-family:var(--f-ui);overflow:hidden}
+header{padding:16px 18px 14px;border-bottom:1px solid var(--line);display:grid;gap:3px}
+.brand{font-weight:700;font-size:15px;letter-spacing:.01em;margin:0}
+.sub{font-size:12px;color:var(--muted);margin:0}
+.scroll{overflow-y:auto;padding:0 18px 18px;height:calc(100% - 66px);box-sizing:border-box}
+section{padding-block:14px;border-bottom:1px solid var(--line);display:grid;gap:12px}
+section:last-child{border-bottom:0}
+h2{font-size:11px;text-transform:uppercase;letter-spacing:.13em;color:var(--muted);font-weight:500;margin:0}
+.row{display:grid;grid-template-columns:1fr auto;gap:5px 10px;align-items:center}
+.row label{font-size:13px}
+.row output{font-family:var(--f-mono);font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
+.row input[type=range]{grid-column:1/-1;width:100%}
+input[type=range]{accent-color:var(--accent);height:18px;margin:0}
+.toggle{display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:13px}
+.toggle input{accent-color:var(--accent);width:16px;height:16px;margin:0}
+select,input[type=number],input[type=text]{background:var(--chip);color:var(--fg);border:1px solid var(--line);border-radius:8px;padding:6px 8px;font:13px var(--f-ui)}
+select option{background:#15171c}
+input[type=number]{width:84px;font-family:var(--f-mono)}
+input[type=text]{width:100%;box-sizing:border-box}
+.btns{display:flex;gap:8px;flex-wrap:wrap}
+.btn{background:var(--chip);border:1px solid var(--line);color:var(--fg);border-radius:8px;padding:7px 12px;font:500 13px var(--f-ui);cursor:pointer}
+.btn:hover{background:rgba(255,255,255,.1)}
+.btn.primary{background:var(--accent);color:var(--accent-ink);border-color:transparent}
+.btn:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.note{font-size:12px;color:var(--muted);line-height:1.5;margin:0}
+.field{display:grid;gap:5px}
+.field label{font-size:13px}
+</style>
+</head>
+<body>
+<header>
+  <p class="brand">JewelCase</p>
+  <p class="sub">Ajustes del widget</p>
+</header>
+<div class="scroll">
+
+  <section>
+    <h2>Álbum</h2>
+    <div class="field"><label for="artist">Artista</label><input type="text" id="artist" data-k="artist" data-commit="change"></div>
+    <div class="field"><label for="album">Álbum</label><input type="text" id="album" data-k="album" data-commit="change"></div>
+    <div class="field"><label for="fanartApiKey">Clave de Fanart.tv (opcional)</label><input type="text" id="fanartApiKey" data-k="fanartApiKey" data-commit="change" autocomplete="off" spellcheck="false"></div>
+    <div class="field"><label for="discogsToken">Token de Discogs (opcional)</label><input type="text" id="discogsToken" data-k="discogsToken" data-commit="change" autocomplete="off" spellcheck="false"></div>
+    <div class="field"><label for="discUrl">Foto del CD de este álbum (URL)</label><input type="text" id="discUrl" autocomplete="off" spellcheck="false" placeholder="https://… (foto del lado impreso del disco)"></div>
+    <div class="btns"><button class="btn" id="discUrlSet">Usar esta foto</button><button class="btn" id="discUrlClear">Quitar foto manual</button></div>
+    <div class="btns"><button class="btn primary" id="reloadArt">Recargar arte</button></div>
+    <p class="note" id="artInfo" style="white-space:pre-line;color:var(--fg)">Todavía no se resolvió ningún álbum.</p>
+    <p class="note">Si ninguna fuente tiene el disco, pegá la URL de una foto del lado impreso (por ejemplo, de Discogs) y se usa solo para este álbum. La foto puede estar apoyada en cualquier fondo: se ubica el círculo solo.</p>
+    <p class="note">La foto del CD se busca en Cover Art Archive, después en Fanart.tv y TheAudioDB y por último en Discogs (las dos claves son gratuitas y opcionales). Si ninguna la tiene, se genera la serigrafía.</p>
+  </section>
+
+  <section>
+    <h2>Ventana</h2>
+    <div class="row"><label for="size">Tamaño</label><output id="sizeO"></output><input type="range" id="size" data-k="size" min="50" max="400" step="1" data-fmt=" %"></div>
+    <div class="row"><label for="level">Nivel</label>
+      <select id="level" data-k="level"><option value="top">Siempre encima</option><option value="normal">Normal</option><option value="bottom">Al fondo</option></select></div>
+    <label class="toggle" for="pauseFullscreen">Pausar con apps a pantalla completa <input type="checkbox" id="pauseFullscreen" data-k="pauseFullscreen"></label>
+    <div class="btns"><button class="btn primary" id="moveBtn">Reposicionar en el escritorio</button></div>
+    <p class="note">Con "Reposicionar" arrastrás toda la ventana; doble clic sobre ella para terminar. También: Alt + arrastrar sobre la caja. Para girarla, arrastrá la caja; clic abre o cierra la tapa.</p>
+  </section>
+
+  <section>
+    <h2>Caja</h2>
+    <div class="row"><label for="yaw">Giro horizontal</label><output id="yawO"></output><input type="range" id="yaw" data-k="yaw" min="-180" max="180" step="1" data-fmt="°"></div>
+    <div class="row"><label for="pitch">Inclinación</label><output id="pitchO"></output><input type="range" id="pitch" data-k="pitch" min="-180" max="180" step="1" data-fmt="°"></div>
+    <div class="row"><label for="roll">Rotación</label><output id="rollO"></output><input type="range" id="roll" data-k="roll" min="-180" max="180" step="1" data-fmt="°"></div>
+    <label class="toggle" for="sway">Balanceo suave <input type="checkbox" id="sway" data-k="sway"></label>
+    <div class="row"><label for="edgeAmt">Definición de bordes</label><output id="edgeAmtO"></output><input type="range" id="edgeAmt" data-k="edgeAmt" min="0" max="100" step="1" data-fmt=" %"></div>
+    <div class="row"><label for="msaa">Bordes a través del vidrio</label>
+      <select id="msaa" data-k="msaa" data-num="1"><option value="0">Sin suavizado (ahorra más GPU)</option><option value="2">Medio (×2)</option><option value="4">Alto (×4)</option></select></div>
+    <div class="row"><label for="quality">Calidad de imagen</label>
+      <select id="quality" data-k="quality" data-num="1"><option value="1">Normal</option><option value="1.5">Alta</option><option value="2">Máxima</option></select></div>
+    <div class="row"><label for="spinSecs">Segundos por vuelta</label><output id="spinSecsO"></output><input type="range" id="spinSecs" data-k="spinSecs" min="0.5" max="20" step="0.1" data-fmt=" s"></div>
+    <label class="toggle" for="spinReverse">Invertir el sentido <input type="checkbox" id="spinReverse" data-k="spinReverse"></label>
+    <div class="btns"><button class="btn primary" id="spinBtn">Girar</button></div>
+    <div class="btns"><button class="btn" id="lidBtn">Abrir / cerrar tapa</button><button class="btn" id="resetBtn">Orientación inicial</button></div>
+  </section>
+
+  <section>
+    <h2>CD</h2>
+    <label class="toggle" for="playing">Girando <input type="checkbox" id="playing" data-k="playing"></label>
+    <div class="row"><label for="fps">Fluidez al girar</label>
+      <select id="fps" data-k="fps" data-num="1"><option value="15">15 fotogramas/s (ahorra más)</option><option value="24">24 fotogramas/s</option><option value="30">30 fotogramas/s</option><option value="60">60 fotogramas/s</option></select></div>
+    <div class="row"><label for="rpm">Velocidad</label><output id="rpmO"></output><input type="range" id="rpm" data-k="rpm" min="0" max="120" step="1" data-fmt=" rpm"></div>
+    <div class="row"><label for="discStyle">Serigrafía</label>
+      <select id="discStyle" data-k="discStyle">
+        <option value="full">Portada completa</option>
+        <option value="partial">Parcial (se ve la plata)</option>
+        <option value="silver">Plateado con texto</option>
+        <option value="upload">Foto real del CD (si no hay: parcial)</option>
+      </select></div>
+    <p class="note">Con "Foto real del CD" se usa la que encuentre el resolvedor; si no hay, queda la serigrafía procedural.</p>
+  </section>
+
+  <section>
+    <h2>Papel</h2>
+    <label class="toggle" for="paper">Librito e inlay <input type="checkbox" id="paper" data-k="paper"></label>
+    <label class="toggle" for="paperDark">Lista de canciones en modo oscuro <input type="checkbox" id="paperDark" data-k="paperDark"></label>
+    <p class="note">Con el papel puesto, abrí la tapa: la lista de canciones del librito se puede tocar.</p>
+  </section>
+
+  <section>
+    <h2>Desgaste</h2>
+    <div class="row"><label for="wearPreset">Estado</label>
+      <select id="wearPreset" data-k="wearPreset">
+        <option value="new">Nueva</option><option value="light">Poco uso</option><option value="used">Usada</option><option value="glovebox">De la guantera</option><option value="custom">Personalizado</option>
+      </select></div>
+    <div class="row"><label for="count">Cantidad de rayones</label><output id="countO"></output><input type="range" id="count" data-k="count" data-wear="1" min="0" max="400" step="1"></div>
+    <div class="row"><label for="wearI">Intensidad</label><output id="wearIO"></output><input type="range" id="wearI" data-k="wearI" data-wear="1" min="0" max="100" step="1" data-fmt=" %"></div>
+    <div class="row"><label for="wearLen">Largo medio</label><output id="wearLenO"></output><input type="range" id="wearLen" data-k="wearLen" data-wear="1" min="2" max="80" step="1" data-fmt=" mm"></div>
+    <div class="row"><label for="swirl">Marcas circulares</label><output id="swirlO"></output><input type="range" id="swirl" data-k="swirl" data-wear="1" min="0" max="100" step="1" data-fmt=" %"></div>
+    <div class="row"><label for="dust">Polvo</label><output id="dustO"></output><input type="range" id="dust" data-k="dust" data-wear="1" min="0" max="100" step="1" data-fmt=" %"></div>
+    <div class="row"><label for="surface">Superficie</label>
+      <select id="surface" data-k="surface"><option value="both">Tapa y base</option><option value="lid">Solo tapa</option><option value="base">Solo base</option></select></div>
+    <div class="row"><label for="seed">Semilla</label>
+      <span class="btns"><input type="number" id="seed" data-k="seed" min="1" max="99999"><button class="btn" id="dice" aria-label="Semilla al azar">Otra</button></span></div>
+  </section>
+
+  <section>
+    <h2>Spotify</h2>
+    <div class="field"><label for="spotifyClientId">Client ID</label><input type="text" id="spotifyClientId" data-k="spotifyClientId" data-commit="change" autocomplete="off" spellcheck="false"></div>
+    <div class="btns"><button class="btn primary" id="spLogin">Conectar con Spotify</button><button class="btn" id="spLogout">Desconectar</button></div>
+    <p class="note" id="spStatus" aria-live="polite">Sin conectar</p>
+    <p class="note">Al conectar, la caja muestra el álbum que suena, el CD gira mientras reproduce y tocar una canción del librito la reproduce (hace falta Premium y Spotify abierto en algún dispositivo). En el panel de Spotify registrá esta Redirect URI: <code>http://127.0.0.1:47862/callback</code></p>
+  </section>
+
+  <section>
+    <h2>Fondo</h2>
+    <label class="toggle" for="refr">Refracción <input type="checkbox" id="refr" data-k="refr"></label>
+    <label class="toggle" for="live">Ver lo que hay detrás en vivo <input type="checkbox" id="live" data-k="live"></label>
+    <div class="row"><label for="refrAmt">Intensidad</label><output id="refrAmtO"></output><input type="range" id="refrAmt" data-k="refrAmt" min="0" max="100" step="1" data-fmt=" %"></div>
+    <p class="note">Con "en vivo" la caja refracta lo que tenés realmente detrás: ventanas, íconos y fondo (30 cuadros por segundo). Sin eso usa solo tu wallpaper.</p>
+  </section>
+
+</div>
+<script type="module" src="/src/settings/main.ts"></script>
+</body>
+</html>

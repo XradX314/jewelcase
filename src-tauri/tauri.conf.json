@@ -1,0 +1,51 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "JewelCase",
+  "version": "0.1.0",
+  "identifier": "com.gonzalo.jewelcase",
+  "build": {
+    "frontendDist": "../dist",
+    "devUrl": "http://127.0.0.1:1420",
+    "beforeDevCommand": "npm run dev",
+    "beforeBuildCommand": "npm run build"
+  },
+  "app": {
+    "withGlobalTauri": false,
+    "windows": [
+      {
+        "label": "widget",
+        "title": "JewelCase",
+        "url": "index.html",
+        "width": 400,
+        "height": 400,
+        "decorations": false,
+        "transparent": true,
+        "shadow": false,
+        "skipTaskbar": true,
+        "resizable": false,
+        "maximizable": false,
+        "minimizable": false,
+        "focus": false,
+        "visible": false
+      },
+      {
+        "label": "settings",
+        "title": "JewelCase · Ajustes",
+        "url": "settings.html",
+        "width": 380,
+        "height": 780,
+        "resizable": true,
+        "visible": false
+      }
+    ],
+    "security": { "csp": null }
+  },
+  "bundle": {
+    "active": true,
+    "targets": "all",
+    "category": "Music",
+    "shortDescription": "3D jewel case desktop widget showing the album playing on Spotify",
+    "longDescription": "JewelCase is a desktop widget that renders a transparent 3D jewel case with a spinning CD of the album currently playing on Spotify.",
+    "icon": ["icons/32x32.png", "icons/128x128.png", "icons/128x128@2x.png", "icons/icon.icns", "icons/icon.ico"]
+  }
+}

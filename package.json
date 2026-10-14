@@ -1,0 +1,25 @@
+{
+  "name": "jewelcase",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "tauri": "tauri",
+    "render": "node tools/render/build.mjs"
+  },
+  "dependencies": {
+    "@fontsource/chivo": "^5.1.0",
+    "@fontsource/chivo-mono": "^5.1.0",
+    "@tauri-apps/api": "^2.0.0",
+    "three": "0.158.0"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "^2.0.0",
+    "@types/three": "0.158.3",
+    "typescript": "^5.5.0",
+    "vite": "^5.4.0"
+  }
+}

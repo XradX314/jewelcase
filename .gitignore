@@ -1,0 +1,11 @@
+node_modules
+dist
+src-tauri/target
+src-tauri/gen
+*.log
+.handoff/
+CLAUDE.md
+.claude/
+.env
+*.exe
+__pycache__/
