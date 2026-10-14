@@ -25,7 +25,7 @@
 
 Los instaladores no están firmados: en Windows, SmartScreen → «Más información → Ejecutar de todas formas»; en macOS, clic derecho → Abrir.
 
-En Linux y macOS no hay refracción en vivo del escritorio ni detección instantánea de Spotify (SMTC); el resto funciona.
+En Linux y macOS no hay refracción en vivo del escritorio ni detección instantánea de Spotify (SMTC); el resto funciona. En Linux con Wayland el click-through dinámico puede no funcionar (usá X11).
 
 ## Uso
 

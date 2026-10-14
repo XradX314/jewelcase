@@ -30,7 +30,7 @@ use tokio::{
     task::{JoinHandle, JoinSet},
 };
 
-const UA: &str = "JewelCaseWidget/0.1 (uso personal)";
+const UA: &str = "JewelCaseWidget/0.1 (+https://github.com/XradX314/jewelcase)";
 const MB: &str = "https://musicbrainz.org/ws/2";
 const CAA: &str = "https://coverartarchive.org";
 const MAX_RELEASES: usize = 20;

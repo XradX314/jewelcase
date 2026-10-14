@@ -6,7 +6,7 @@ Uso:  python resolver.py "Artista" "Álbum" [--upc 0123456789012] [--download ca
 """
 import json, sys, time, urllib.parse, urllib.request, argparse, os
 
-UA = "JewelCaseWidget/0.1 (uso personal)"
+UA = "JewelCaseWidget/0.1 (+https://github.com/XradX314/jewelcase)"
 MB = "https://musicbrainz.org/ws/2"
 CAA = "https://coverartarchive.org"
 _last_mb = 0.0

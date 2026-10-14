@@ -9,3 +9,7 @@ CLAUDE.md
 .env
 *.exe
 __pycache__/
+config.json
+resultados.json
+.DS_Store
+Thumbs.db
