@@ -6,6 +6,8 @@
 <title>JewelCase — un CD girando en tu escritorio</title>
 <meta name="description" content="Widget 3D de código abierto: una jewel case transparente con el CD del álbum que suena en Spotify, girando en tu escritorio.">
 <link rel="icon" href="icon.png">
+<link rel="alternate" hreflang="es" href="./">
+<link rel="alternate" hreflang="en" href="en/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Chivo:wght@400;500;700;900&family=Chivo+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -27,6 +29,7 @@ nav .brand img{width:30px;height:30px;border-radius:7px}
 nav ul{display:flex;gap:20px;list-style:none;margin:0;padding:0;flex-wrap:wrap}
 nav ul a{color:var(--muted);text-decoration:none;font-size:14px}
 nav ul a:hover{color:var(--fg)}
+nav ul a[hreflang]{color:var(--fg);font-weight:700;border:1px solid var(--line);border-radius:99px;padding:2px 10px}
 .hero{display:grid;grid-template-columns:1.05fr 1fr;gap:36px;align-items:center;padding:36px 0 56px}
 .hero h1{font-size:clamp(36px,6vw,64px);line-height:1.02;margin:0 0 18px;font-weight:900;letter-spacing:-.02em}
 .hero p{color:var(--muted);font-size:18px;margin:0 0 26px;max-width:46ch}
@@ -71,6 +74,7 @@ footer{padding:36px 0 60px;color:var(--muted);font-size:14px;border-top:1px soli
       <li><a href="#spotify">Spotify</a></li>
       <li><a href="#compilar">Compilar</a></li>
       <li><a href="https://github.com/XradX314/jewelcase">GitHub</a></li>
+      <li><a href="en/" lang="en" hreflang="en">English</a></li>
     </ul>
   </nav>
 

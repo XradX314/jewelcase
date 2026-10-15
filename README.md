@@ -2,7 +2,7 @@
 
 **Un CD girando en tu escritorio.** Widget 3D de código abierto: una jewel case transparente con el CD del álbum que suena en Spotify, con refracción real de tu fondo de pantalla.
 
-🌐 **Web y demo en vivo:** https://xradx314.github.io/jewelcase/
+🌐 **Web y demo en vivo:** https://xradx314.github.io/jewelcase/ (English: https://xradx314.github.io/jewelcase/en/)
 ⬇️ **Descargas:** [Releases](https://github.com/XradX314/jewelcase/releases/latest)
 
 > *English:* JewelCase is an open-source desktop widget (Tauri 2 + Three.js) that renders a physically-inspired transparent CD jewel case with the disc of the album currently playing on Spotify. Windows is fully supported; Linux and macOS builds are experimental. See the [website](https://xradx314.github.io/jewelcase/) for a live demo.
